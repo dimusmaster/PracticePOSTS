@@ -144,7 +144,7 @@ app.get("/api/content/:post", (req, res) => {
 //Создание статьи
 app.post("/api/create-post", (req, res) => {
   const cookies = Cookies(req, res);
-  if (!cookies) {
+  if (!cookies.get("username")) {
     return res.status(400).json({ message: "Вы не авторизованы!" });
   }
   User.findOne({ username: cookies.get("username") })
@@ -171,6 +171,10 @@ app.post("/api/create-post", (req, res) => {
 
 //Удаление поста    
 app.delete("/api/post-delete", (req, res) => {
+    const cookies = Cookies(req, res);
+    if (!cookies.get("username")) {
+      return res.status(400).json({ message: "Вы не авторизованы!" });
+    }
     const {post_id} = req.body;
     Post.findByIdAndDelete(new ObjectId(post_id))
     .orFail()
