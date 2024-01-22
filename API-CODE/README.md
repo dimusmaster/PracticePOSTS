@@ -52,6 +52,12 @@
             <td>username, password</td>
             <td style="text-align:center">+</td>
         </tr>
+                <tr>
+            <td>Create Comment</td>
+            <td>PATCH</td>
+            <td>text</td>
+            <td style="text-align:center">+</td>
+        </tr>
         <tr>
             <td>Check Profile</td>
             <td>GET</td>
