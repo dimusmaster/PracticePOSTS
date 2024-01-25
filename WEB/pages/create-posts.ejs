@@ -1,0 +1,28 @@
+<%- include('./components/head') %>
+<body>
+    <section class="profile">
+        <%- include('./components/navigation') %>
+        <div class="container">
+            <div class="profile__inner">
+                <span class="title h1">Создание поста</span>
+                <form method="post" action="/create-post">
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Заголовок</label>
+                      <input name="title" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Текст</label>
+                      <textarea name="text" type="text" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <span class="form-label">Выберите ктегорию:</span>
+                        <input name="category" value="post" class="form-check-input" type="radio">
+                        <label class="form-check-label" for="flexRadioDefault1">POST</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Создать</button>
+                  </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

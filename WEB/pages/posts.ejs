@@ -1,0 +1,21 @@
+<%- include('./components/head') %>
+<body>
+    <section class="posts">
+        <%- include('./components/navigation') %>
+        <div class="container">
+            <div class="posts__inner">
+                <span class="title h1">Посты</span>
+                <form class="posts-form" method="post" action="/posts">
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping">Поиск по категории</span>
+                        <input name="filter" type="text" class="form-control" placeholder="Введите название категории">
+                        <button type="submit" class="btn btn-outline-primary">Найти</button>
+                    </div>
+                </form>
+                <%- include('./components/post-card') %>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

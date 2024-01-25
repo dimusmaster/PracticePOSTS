@@ -1,0 +1,31 @@
+<%- include('./components/head') %>
+<body>
+    <section class="profile">
+        <%- include('./components/navigation') %>
+        <div class="container">
+            <div class="profile__inner">
+                <span class="title h1">Профиль</span>
+                <span class="text h5">Добро пожаловать, <%= name %>!</span>
+                <form method="post" action="/profile">
+                    <div class="profile__data-container">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Имя пользователя</label>
+                            <input name="username" value="<%= name %>" type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Пароль</label>
+                            <input name="password" value="<%= password %>" type="text" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary">Сохранить</button>
+                    </div>
+                </form>
+                <a href="/create-post" class="btn btn-success">Создать пост</a>
+                <div class="posts-container">
+                    <%- include('./components/post-card') %>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

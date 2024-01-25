@@ -1,0 +1,51 @@
+<%- include('./components/head') %>
+<body>
+    <section class="auth">
+        <%- include('./components/navigation') %>
+        <div class="container">
+            <div class="auth__inner">
+                <span class="title h1"><%= posts.title %></span>
+                <blockquote class="blockquote">
+                    <p><%= posts.text %></p>
+                </blockquote>
+                <hr class="line">
+                <blockquote class="blockquote">
+                    <p>Запись создана: <%= posts.createdAt %></p>
+                </blockquote>
+                <div class="card-body">
+                    <a href="/posts" class="btn btn-outline-danger">Выйти</a>
+                      <% if(userId.toString() === posts.author.toString()) { %>
+                          <button type="submit" id="delete-btn" class="btn btn-outline-danger">Удалить</button>
+                      <% } %>
+                  </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const deleteBtn = document.querySelector("#delete-btn");
+        deleteBtn.addEventListener('click', () => {
+            console.log("<%= posts._id.toString() %>")
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+            var urlencoded = new URLSearchParams();
+            urlencoded.append("post_id", `<%= posts._id.toString() %>`);
+
+            var requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+            };
+
+            fetch("http://localhost:3000/api/post-delete", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+                window.location.replace("/posts");
+            })
+            .catch(error => console.log('error', error));
+        })
+    </script>
+</body>
+</html>

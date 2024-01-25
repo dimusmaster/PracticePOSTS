@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+span {
+    display: block;
+}
+
+p {
+    margin: 0;
+}
+
+hr {
+    margin: 0;
+    color: gray;
+}
+
+.line {
+    margin: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.title {
+    margin: 50px 0 20px 0;
+}
+
+.text {
+    margin-bottom: 30px;
+}
+
+.posts__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.card-text {
+    margin-bottom: 20px;
+}
+
+.posts-container {
+    margin-top: 50px;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile__data-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mb-3 {
+    width: 44.5%;
+}
+
+.posts-form {
+    margin-bottom: 30px;
+}

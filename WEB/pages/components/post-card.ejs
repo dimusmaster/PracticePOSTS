@@ -1,0 +1,67 @@
+<div class="posts__container">
+    <% posts.forEach((element) => { %>
+        <% if(element.is_deleted === false) { %>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= element.title %></h5>
+              <p class="card-text"><%= element.text %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Категория: <%= element.category %></li>
+              <li class="list-group-item">Дата создания: <%= element.createdAt %></li>
+            </ul>
+              <div class="card-body">
+                <a href="content/<%= element._id %>" class="btn btn-primary">Прочитать</a>
+                  <% if(userId.toString() === element.author.toString()) { %>
+                      <button type="submit" id="<%= element._id %>" class="btn btn-outline-danger delete-btn">Удалить</button>
+                  <% } %>
+              </div>
+          </div>
+        <% } else { %>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Пост удалён</h5>
+              </div>
+          </div>
+        <% } %>
+
+    <% }); %>
+    </div>
+
+    <script>
+      function renderCard(card) {
+          const deleteBtn = card.querySelector('.delete-btn')
+          if (deleteBtn != null) {
+            deleteBtn.addEventListener('click', () => {
+            `<% posts.forEach(element => { %>`
+              if('<%= element._id.toString() %>' == deleteBtn.id) {
+              var myHeaders = new Headers();
+              myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+      
+              var urlencoded = new URLSearchParams();
+              urlencoded.append("post_id", `<%= element._id.toString() %>`);
+      
+              var requestOptions = {
+              method: 'DELETE',
+              headers: myHeaders,
+              body: urlencoded,
+              redirect: 'follow'
+              };
+      
+              fetch("http://localhost:3000/api/post-delete", requestOptions)
+              .then(response => response.text())
+              .then(result => {
+                  window.location.replace("/posts");
+              })
+              .catch(error => console.log('error', error));
+            }
+            `<% }); %>`
+
+          })
+          }
+        }
+        const deleteCards = document.querySelectorAll(".card");
+        deleteCards.forEach(item => {
+        renderCard(item)
+        })
+  </script>
